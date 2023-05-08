@@ -127,7 +127,7 @@ public class AzureCredentialsProvider extends CredentialsProvider {
                     if (StringUtils.isNotBlank(labelSelector)) {
                         String labelSelectorTag = tags.get("jenkins-label");
                         
-                        if (StringUtils.isNotBlank(tag)) {
+                        if (StringUtils.isNotBlank(labelSelectorTag)) {
                             String[] labelSelectorValues = labelSelectorTag.split(",");
                             boolean labelSelectorFound = false;
 
