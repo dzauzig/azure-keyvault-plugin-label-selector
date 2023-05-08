@@ -125,11 +125,11 @@ public class AzureCredentialsProvider extends CredentialsProvider {
                     }
 
                     if (StringUtils.isNotBlank(labelSelector)) {
+                        boolean labelSelectorFound = false;
                         String labelSelectorTag = tags.get("jenkins-label");
                         
                         if (StringUtils.isNotBlank(labelSelectorTag)) {
                             String[] labelSelectorValues = labelSelectorTag.split(",");
-                            boolean labelSelectorFound = false;
 
                             for (String value : labelSelectorValues) {
                                 if (labelSelector.equals(value)) {
@@ -137,10 +137,10 @@ public class AzureCredentialsProvider extends CredentialsProvider {
                                     break;
                                 }
                             }
+                        }
                         
-                            if (labelSelectFound == false) {
-                                continue;
-                            }
+                        if (labelSelectFound == false) {
+                            continue;
                         }
                     }
 
