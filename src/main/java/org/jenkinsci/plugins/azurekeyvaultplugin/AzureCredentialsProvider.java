@@ -125,15 +125,26 @@ public class AzureCredentialsProvider extends CredentialsProvider {
                     }
 
                     if (StringUtils.isNotBlank(labelSelector)) {
+                        String tag = tags.get("jenkins-label");
+                        
+                        if (tag == null) {
+                            continue;
+                        }
+                        
                         String[] labelSelectorValues = tags.get("jenkins-label").split(",");
-                        boolean labelSelectorFound = Arrays.stream(labelSelectorValues).anyMatch(labelSelector::equals);
+                        boolean labelSelectorFound = false;
 
-                        if (!labelSelectorFound) {
-                        // User specified a label selector in config, but current credential does not contain a matching tag, skip iteration
+                        for (String value : labelSelectorValues) {
+                            if (labelSelector.equals(value)) {
+                                labelSelectorFound = true;
+                                break;
+                            }
+                        }
+                        
+                        if (labelSelectFound == false) {
                             continue;
                         }
                     }
-
 
                     String type = tags.getOrDefault("type", DEFAULT_TYPE);
 
